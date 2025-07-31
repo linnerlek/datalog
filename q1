@@ -1,0 +1,1 @@
+answer(X,Y) :- spj(S,X,_,_), spj(S,Y,_,_), X < Y.$

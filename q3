@@ -1,0 +1,23 @@
+answer(F,M,L) :- 
+
+    employee(F,M,L,S,_,_,_,_,_,5),
+
+    works_on(S,P,H),
+
+    projects('ProductX',P,_,_),
+
+    H >= 10. 
+
+answer(X,Y,L) :- p(X,Y,L), q(Y,L), X>10.
+
+ 
+
+p(X,Y,Z) :- q(X,Y), r(A,B).
+
+
+
+r(A,B) :- emp(E,F), dep(F,X).
+
+ 
+
+$
