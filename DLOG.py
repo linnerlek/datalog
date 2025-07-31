@@ -210,14 +210,4 @@ def main():
           print(inst.args[0])
  
 main()
-              ra_expr_dict = {}
-              for pred in pred_list:
-                ra_expr = generate_ra(pred,pred_dict)
-                print(ra_expr)
-                ra_expr_dict[pred] = ra_expr
-            else:
-              print(result)
-        except Exception as inst:
-          print(inst.args[0])
- 
-main()
+             
