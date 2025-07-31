@@ -93,7 +93,7 @@ def all_predicates(dgraph):
 
 def semantic_checks(db, pred_dict):
     idb_preds = set(pred_dict.keys())  # IDB predicates, appear in head of rules
-    db_tables = set([t.upper() for t in db.table_names()])
+    db_tables = set(db.relations)      
     edb_preds = set()                  # EDB predicates, only in bodies not heads
     all_body_preds = set()
     idb_arities = {}
@@ -118,13 +118,13 @@ def semantic_checks(db, pred_dict):
 
     # All predicates in body are IDB or DB tables
     for pred in all_body_preds:
-        if pred not in idb_preds and pred.upper() not in db_tables:
+        if pred not in idb_preds and not db.relationExists(pred):
             return f"SEMANTIC ERROR: Predicate '{pred}' in rule body is not IDB or DB table"
 
     # Arity of EDB predicates matches DB table columns
     for pred in edb_preds:
-        if pred.upper() in db_tables:
-            db_arity = len(db.table_info(pred.upper()))
+        if db.relationExists(pred):
+            db_arity = len(db.getAttributes(pred))
             if edb_arities[pred] != db_arity:
                 return f"SEMANTIC ERROR: Arity mismatch for EDB predicate '{pred}': rule has {edb_arities[pred]}, DB has {db_arity}"
         else:
@@ -144,8 +144,8 @@ def semantic_checks(db, pred_dict):
                 if lit[1][0] == 'regular':
                     pred = lit[1][1]
                     terms = lit[1][2]
-                    if pred.upper() in db_tables:
-                        col_types = [col[1].upper() for col in db.table_info(pred.upper())]
+                    if db.relationExists(pred):
+                        col_types = [t.upper() for t in db.getDomains(pred)]
                         for i, term in enumerate(terms):
                             if term[0] == 'const':
                                 val = term[1]
@@ -210,4 +210,3 @@ def main():
           print(inst.args[0])
  
 main()
-             

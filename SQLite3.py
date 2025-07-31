@@ -85,11 +85,3 @@ class SQLite3():
     records = c.execute(query)
     c.close()
     return len(records) == 0
-
-  def table_names(self):
-    return self.relations
-
-  def table_info(self, rname):
-    attrs = self.attributes[rname.upper()]
-    doms = self.domains[rname.upper()]
-    return list(zip(attrs, doms))
