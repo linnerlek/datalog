@@ -1,0 +1,9 @@
+temp1(S,P) :-
+    employee(_,_,_,S,_,_,_,_,_,_),
+    projects(_,P,_,_).
+temp2(S,P) :-
+    works_on(S,P,_).
+temp3(S) :-
+    temp1(S,P), not temp2(S,P).
+answer(F,M,L) :-
+    employee(F,M,L,S,_,_,_,_,_,_), not temp3(S).$

@@ -1,6 +1,3 @@
-answer(F,M,L) :- 
-    employee(F,M,L,S,_,_,_,_,_,5),
-    works_on(S,P,H),
-    projects('ProductX',P,_,_),
-    H >= 10. 
-$
+answer(F,M,L) :-
+    employee(F,M,L,S,_,_,_,_,_,_),
+    dependent(S,F,_,_,_).$

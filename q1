@@ -1,1 +1,4 @@
-answer(X,Y) :- spj(S,X,_,_), spj(S,Y,_,_), X < Y.$
+answer(F,M,L) :-
+    employee(F,M,L,S,_,_,_,_,_,5),
+    works_on(S,P,H), H >= 10,
+    projects('ProductX',P,_,_).$

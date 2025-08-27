@@ -92,8 +92,7 @@ def all_predicates(dgraph):
   return result
 
 def semantic_checks(db, pred_dict):
-    idb_preds = set(pred_dict.keys())  # IDB predicates, appear in head of rules
-    db_tables = set(db.relations)      
+    idb_preds = set(pred_dict.keys())  # IDB predicates, appear in head of rules   
     edb_preds = set()                  # EDB predicates, only in bodies not heads
     all_body_preds = set()
     idb_arities = {}
@@ -115,6 +114,10 @@ def semantic_checks(db, pred_dict):
     # IDB and EDB predicates are disjoint
     if idb_preds & edb_preds:
         return f"SEMANTIC ERROR: IDB and EDB predicates overlap: {idb_preds & edb_preds}"
+
+    # debug
+    #print("IDB predicates:", idb_preds) 
+    #print("All body predicates:", all_body_preds)
 
     # All predicates in body are IDB or DB tables
     for pred in all_body_preds:

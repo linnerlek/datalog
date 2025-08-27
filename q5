@@ -1,0 +1,4 @@
+temp1(S) :-
+    works_on(S,_,_).
+answer(F,M,L) :-
+    employee(F,M,L,S,_,_,_,_,_,_), not temp1(S).$

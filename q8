@@ -1,0 +1,6 @@
+temp1(S) :-
+    dependent(S,_,_,_,_).
+answer(L) :-
+    employee(_,_,L,S,_,_,_,_,_,_),
+    department(_,_,S,_),
+    not temp1(S).$
